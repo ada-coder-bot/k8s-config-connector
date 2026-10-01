@@ -1084,7 +1084,7 @@ X-Xss-Protection: 0
 
 ---
 
-PATCH https://alloydb.googleapis.com/v1beta/projects/${projectId}/locations/us-central1/clusters/alloydbcluster-${uniqueId}?%24alt=json%3Benum-encoding%3Dint&updateMask=automatedBackupPolicy%2CcontinuousBackupConfig%2CdisplayName%2CinitialUser%2Clabels%2CmaintenanceUpdatePolicy
+PATCH https://alloydb.googleapis.com/v1beta/projects/${projectId}/locations/us-central1/clusters/alloydbcluster-${uniqueId}?%24alt=json%3Benum-encoding%3Dint&updateMask=automatedBackupPolicy%2CcontinuousBackupConfig%2CdisplayName%2CmaintenanceUpdatePolicy%2Clabels
 Content-Type: application/json
 
 {
@@ -1124,12 +1124,10 @@ Content-Type: application/json
     },
     "recoveryWindowDays": 7
   },
-  "databaseVersion": 4,
   "displayName": "A test alloyDB cluster with updated display name",
   "encryptionConfig": {
     "kmsKeyName": "projects/${projectId}/locations/us-central1/keyRings/kmskeyring-${uniqueId}/cryptoKeys/kmscryptokey-1-${uniqueId}"
   },
-  "geminiConfig": {},
   "initialUser": {
     "password": "kcc-test-updated",
     "user": "postgres2"
@@ -1153,13 +1151,11 @@ Content-Type: application/json
     ]
   },
   "name": "projects/${projectId}/locations/us-central1/clusters/alloydbcluster-${uniqueId}",
-  "network": "projects/${projectId}/global/networks/${networkID}",
   "networkConfig": {
     "allocatedIpRange": "test-range-1",
     "network": "projects/${projectId}/global/networks/${networkID}"
   },
-  "reconciling": false,
-  "subscriptionType": 1
+  "reconciling": false
 }
 
 200 OK

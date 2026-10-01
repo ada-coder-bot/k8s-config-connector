@@ -1038,53 +1038,23 @@ Content-Type: application/json
 
 {
   "automatedBackupPolicy": {
-    "backupWindow": "3600s",
-    "enabled": false,
     "labels": {
       "source": "kcc-test"
-    },
-    "location": "europe-west8",
-    "timeBasedRetention": {
-      "retentionPeriod": "1209600s"
-    },
-    "weeklySchedule": {
-      "daysOfWeek": [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7
-      ],
-      "startTimes": [
-        {
-          "hours": 23
-        }
-      ]
     }
   },
   "clusterType": 2,
-  "continuousBackupConfig": {
-    "enabled": true,
-    "recoveryWindowDays": 14
-  },
-  "databaseVersion": 4,
-  "geminiConfig": {},
   "labels": {
     "cnrm-test": "true",
     "managed-by-cnrm": "true"
   },
   "name": "projects/${projectId}/locations/europe-west8/clusters/alloydbcluster-2-${uniqueId}",
-  "network": "projects/${projectId}/global/networks/${networkID}",
   "networkConfig": {
     "network": "projects/${projectId}/global/networks/${networkID}"
   },
   "reconciling": false,
   "secondaryConfig": {
     "primaryClusterName": "projects/${projectId}/locations/us-west1/clusters/alloydbcluster-1-${uniqueId}"
-  },
-  "subscriptionType": 1
+  }
 }
 
 200 OK

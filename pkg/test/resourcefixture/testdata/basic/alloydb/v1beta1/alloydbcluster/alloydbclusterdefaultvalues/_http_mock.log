@@ -379,30 +379,9 @@ Content-Type: application/json
 
 {
   "automatedBackupPolicy": {
-    "backupWindow": "3600s",
     "enabled": true,
     "labels": {
       "source": "kcc-test"
-    },
-    "location": "us-west2",
-    "timeBasedRetention": {
-      "retentionPeriod": "1209600s"
-    },
-    "weeklySchedule": {
-      "daysOfWeek": [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7
-      ],
-      "startTimes": [
-        {
-          "hours": 23
-        }
-      ]
     }
   },
   "clusterType": 1,
@@ -410,19 +389,15 @@ Content-Type: application/json
     "enabled": true,
     "recoveryWindowDays": 14
   },
-  "databaseVersion": 4,
-  "geminiConfig": {},
   "labels": {
     "cnrm-test": "true",
     "managed-by-cnrm": "true"
   },
   "name": "projects/${projectId}/locations/us-west2/clusters/alloydbcluster-${uniqueId}",
-  "network": "projects/${projectId}/global/networks/${networkID}",
   "networkConfig": {
     "network": "projects/${projectId}/global/networks/${networkID}"
   },
-  "reconciling": false,
-  "subscriptionType": 1
+  "reconciling": false
 }
 
 200 OK

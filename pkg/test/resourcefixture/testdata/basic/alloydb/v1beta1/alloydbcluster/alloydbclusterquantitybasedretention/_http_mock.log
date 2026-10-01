@@ -369,7 +369,6 @@ Content-Type: application/json
 
 {
   "automatedBackupPolicy": {
-    "backupWindow": "3600s",
     "enabled": true,
     "location": "northamerica-northeast1",
     "quantityBasedRetention": {
@@ -387,23 +386,15 @@ Content-Type: application/json
     }
   },
   "clusterType": 1,
-  "continuousBackupConfig": {
-    "enabled": true,
-    "recoveryWindowDays": 14
-  },
-  "databaseVersion": 4,
-  "geminiConfig": {},
   "labels": {
     "cnrm-test": "true",
     "managed-by-cnrm": "true"
   },
   "name": "projects/${projectId}/locations/northamerica-northeast1/clusters/alloydbcluster-${uniqueId}",
-  "network": "projects/${projectId}/global/networks/${networkID}",
   "networkConfig": {
     "network": "projects/${projectId}/global/networks/${networkID}"
   },
-  "reconciling": false,
-  "subscriptionType": 1
+  "reconciling": false
 }
 
 200 OK

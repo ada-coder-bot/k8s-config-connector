@@ -23,3 +23,22 @@ Investigation and resolution of false-positive field diff discrepancies (`labels
      - Discrepancy observed: `initial_user.password`, `initial_user.user` showed diffs.
    - Reproduction in `_http_migration_phase3_direct_takeover.log`:
      - Non-GET call observed: `PATCH https://alloydb.googleapis.com/v1beta/projects/${projectId}/locations/southamerica-east1/clusters/alloydbcluster${uniqueId}?%24alt=json%3Benum-encoding%3Dint&updateMask=initialUser`
+
+## Step 2: Fix the Discrepancies and Verify
+
+### Implementation
+1. **Centralized Desired Proto Construction (`buildDesired`)**:
+   - Implemented `buildDesired(ctx context.Context, u *unstructured.Unstructured)` as the single source of truth for constructing the desired proto.
+   - Standardized label construction using `label.GCPLabels(u)` to correctly filter KRM internal labels and apply standard labels.
+2. **Brownfield Spec & Labels Diff (`CompareBrownfieldSpecAndLabels`)**:
+   - Replaced raw proto comparison (`CompareProtoMessage`) with `common.CompareBrownfieldSpecAndLabels`.
+   - Used `AlloyDBClusterSpec_FromProto` and `AlloyDBClusterSpec_ToProto` with `MergeUnsetFields` to cleanly handle unspecified defaults from GCP (eliminating the brittle handwritten `resolveGCPDefaults`).
+   - Implemented `normalize` func in `Update` to clear `pbObj.InitialUser = nil` (as `initial_user` is create-only/unreadable) and normalize immutable network fields to avoid spurious diffs.
+3. **Verification**:
+   - Re-ran `TestMigrationToDirect` for `basicalloydbcluster`:
+     - Result: `PASS`
+     - Verified `_migration_diffs.json` contains no diff entries.
+     - Verified `_http_migration_phase3_direct_takeover.log` contains only `GET` calls (no `PATCH` calls).
+     - Verified `_http_migration_phase4_direct_re-reconciliation.log` contains only `GET` calls.
+   - Re-ran `TestAllInSeries` on all `alloydbcluster` test fixtures:
+     - Result: All passed (`alloydbclusterdefaultvalues`, `alloydbclusterquantitybasedretention`, `basicalloydbcluster`, `basicsecondaryalloydbcluster`, `fullalloydbcluster`, `restorecontinuesbackupalloydbcluster`).

@@ -39,6 +39,12 @@ var mockGCPSkipFixtures = map[string]bool{
 	"composer/v1beta1/composerenvironment/composerenvironmentwithrefs":        true,
 	"composer/v1beta1/composerenvironment/composerenvironmentnodeconfig":      true,
 	"container/v1beta1/containernodepool/containernodepool-windowsnodeconfig": true,
+	// Outdated real GCP logs for AlloyDBCluster after migrating to CompareBrownfieldSpecAndLabels
+	"alloydb/v1beta1/alloydbcluster/alloydbclusterdefaultvalues":          true,
+	"alloydb/v1beta1/alloydbcluster/alloydbclusterquantitybasedretention": true,
+	"alloydb/v1beta1/alloydbcluster/basicalloydbcluster":                  true,
+	"alloydb/v1beta1/alloydbcluster/basicsecondaryalloydbcluster":         true,
+	"alloydb/v1beta1/alloydbcluster/fullalloydbcluster":                   true,
 }
 
 var realGCPSkipFixtures = map[string]bool{

@@ -6,41 +6,7 @@
   },
   {
     "controller": "direct",
-    "isNewObject": false,
-    "resource": "AlloyDBCluster/alloydbcluster-${uniqueId}",
-    "fields": [
-      {
-        "id": "initial_user.password"
-      },
-      {
-        "id": "initial_user.user"
-      }
-    ]
-  },
-  {
-    "controller": "direct",
-    "isNewObject": false,
-    "resource": "AlloyDBCluster/alloydbcluster-${uniqueId}",
-    "fields": [
-      {
-        "id": "initial_user.password"
-      },
-      {
-        "id": "initial_user.user"
-      }
-    ]
-  },
-  {
-    "controller": "direct",
-    "isNewObject": false,
-    "resource": "AlloyDBCluster/alloydbcluster-${uniqueId}",
-    "fields": [
-      {
-        "id": "initial_user.password"
-      },
-      {
-        "id": "initial_user.user"
-      }
-    ]
+    "isNewObject": true,
+    "resource": "AlloyDBCluster/alloydbcluster-${uniqueId}"
   }
 ]
