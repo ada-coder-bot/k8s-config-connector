@@ -49,3 +49,14 @@
   3. Updated `mirroringendpointgroup` and new `mirroringdeploymentgroup` to use `NewMirroringRESTClient` with `RESTClientOptions()`.
 - **Impact**: Enables smooth multi-network Packet Mirroring setups and stable golden file recording for Network Security mirroring resources.
 
+### [2026-10-17] Greenfield Direct Controller & E2E Testing for NetworkSecurityInterceptDeploymentGroup
+- **Context**: Implementing direct controller, E2E fixtures, and fuzzer for `NetworkSecurityInterceptDeploymentGroup` (Issue #14052).
+- **Problem**: `NetworkSecurityInterceptDeploymentGroup` required direct controller reconciliation logic, fuzzer registration, static config registration, export support, and end-to-end recording against live GCP.
+- **Solution**:
+  1. Implemented direct controller adapter using `networksecurity.NewInterceptRESTClient` with `RESTClientOptions()`, handling `Find`, `Create`, `Update`, `Delete`, and `Export`.
+  2. Registered `NetworkSecurityInterceptDeploymentGroup` model in `pkg/controller/direct/networksecurity/` and in `pkg/controller/resourceconfig/static_config.go`.
+  3. Implemented KRM typed fuzzer in `pkg/controller/direct/networksecurity/networksecurityinterceptdeploymentgroup_fuzzer.go` covering spec and observed state fields.
+  4. Added `ComputeNetwork` dependency and created minimal and maximal test fixtures with mutable field updates (`description`, `labels`).
+  5. Successfully recorded and verified E2E fixtures against real GCP (`RECORD_AUDIT_PROBE=1 ./hack/record-gcp`), removing all 5 missing field entries from `tests/apichecks/testdata/exceptions/alpha-missingfields.txt`.
+- **Impact**: Provides full lifecycle management, field coverage, and round-trip fuzzing for `NetworkSecurityInterceptDeploymentGroup` via the direct controller approach.
+

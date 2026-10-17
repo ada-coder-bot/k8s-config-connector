@@ -1,0 +1,14 @@
+apiVersion: networksecurity.cnrm.cloud.google.com/v1alpha1
+kind: NetworkSecurityInterceptDeploymentGroup
+metadata:
+  name: interceptdg-max-${uniqueId}
+spec:
+  projectRef:
+    external: "projects/${projectId}"
+  location: global
+  resourceID: interceptdg-max-${uniqueId}
+  networkRef:
+    name: network-${uniqueId}
+  description: "Test Intercept Deployment Group"
+  labels:
+    foo: bar
