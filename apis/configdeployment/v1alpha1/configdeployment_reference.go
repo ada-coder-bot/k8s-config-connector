@@ -71,11 +71,16 @@ func (r *ConfigDeploymentRef) SetExternal(ref string) {
 }
 
 func (r *ConfigDeploymentRef) ValidateExternal(ref string) error {
-	return nil
+	id := &ConfigDeploymentIdentity{}
+	return id.FromExternal(ref)
 }
 
 func (r *ConfigDeploymentRef) ParseExternalToIdentity() (identity.Identity, error) {
-	return nil, nil
+	id := &ConfigDeploymentIdentity{}
+	if err := id.FromExternal(r.External); err != nil {
+		return nil, err
+	}
+	return id, nil
 }
 
 func (r *ConfigDeploymentRef) Normalize(ctx context.Context, reader client.Reader, defaultNamespace string) error {
